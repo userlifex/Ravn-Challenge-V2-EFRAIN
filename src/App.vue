@@ -1,26 +1,20 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <character-view></character-view>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CharacterView from '@/views/character/CharacterView.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    CharacterView
   }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  #app{
+    //don't remove this line 
+  }
 </style>

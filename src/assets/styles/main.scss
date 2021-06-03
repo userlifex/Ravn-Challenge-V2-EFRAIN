@@ -1,0 +1,29 @@
+@import '_variables.scss';
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
+    //default style h2
+    font-size: 17px;
+    color: $text-dark;
+    padding: 16px ;
+}
+
+p{
+    //default style p
+    font-size: 17px;
+    color: $text-dark; 
+}
+
+.low-emphasis{
+    color: $text-light;
+}
+
+.high-emphasis{
+    color: $text-emphasis;
+}
