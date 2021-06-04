@@ -27,7 +27,7 @@ export default {
   padding: 16px;
   padding-left: 0;
   margin-left: 16px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: $border-default;
 }
 
 .data-cell__propiety, .data-cell__value  {
