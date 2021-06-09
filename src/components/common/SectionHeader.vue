@@ -9,7 +9,7 @@ export default {
   name: "SectionHeader",
   props: {
     title: {
-      default: "General information",
+      default: "Section Header",
       type: String,
     },
   },

@@ -1,6 +1,6 @@
 <template>
   
-  <div class="container">
+  <div class="loader-indicator">
       <div class="loader">
         <div class="loader__line">
           <div class="loader__item loader__item--1"></div>
@@ -37,7 +37,7 @@ export default {};
 
 <style scoped lang="scss">
 
-.container{
+.loader-indicator{
     display: flex;
     align-items: center;
 }
@@ -90,9 +90,6 @@ export default {};
 .loader__line:nth-child(6) {
   transform: rotate(150deg);
 }
-
-
-
 .loader__item--1 {
     animation-delay: -1.1s;
 }
@@ -126,7 +123,7 @@ export default {};
 .loader__item--11 {
     animation-delay: -0.1s;
 }
-.loader__item-12 {
+.loader__item--12 {
     animation-delay: 0s;
 }
 

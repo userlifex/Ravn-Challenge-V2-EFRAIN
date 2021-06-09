@@ -1,54 +1,102 @@
 <template>
-  <MainHeader title="Hola como estan"></MainHeader>
+  <MainHeader :text="textHeader"></MainHeader>
+ 
   <div class="container">
     <div class="container__main">
-      <router-view />
+      <PersonLayout></PersonLayout>
+      <LoadingCell v-if="page"></LoadingCell>
     </div>
-    <div class="container__info"></div>
+    <div class="container__info">
+      <DataLayout></DataLayout>
+    </div> 
+
   </div>
 
-  <!-- <Loader></Loader>
-  <SectionHeader title="Titulo general"></SectionHeader>
-  <LoadingCell></LoadingCell>  
-  <div style="width: 400px; margin: 0 auto;">
-  <DataCell></DataCell>  
-  <DataCell></DataCell>  
-  <DataCell></DataCell>  
-
-  </div> -->
 </template>
 
 <script>
 import MainHeader from "@/components/common/MainHeader.vue";
-import Loader from "@/components/common/LoadingIndicator.vue";
-import SectionHeader from "@/components/common/SectionHeader.vue";
 import LoadingCell from "@/components/common/LoadingCell.vue";
-import DataCell from "@/components/common/DataCell.vue";
+import NoticeCell from "@/components/common/NoticeCell.vue";
+
+import PersonLayout from "@/components/layout/PersonLayout.vue";
+import DataLayout from "@/components/layout/DataLayout.vue";
+
+import getFivePeople from "@/use/getFivePeople";
+import { ref, watch, onUpdated } from "vue";
+
+import { useStore } from "vuex";
 
 export default {
   name: "CharacterView",
-  components: { MainHeader, Loader, SectionHeader, LoadingCell, DataCell },
+  components: {
+    MainHeader,
+    LoadingCell,
+    PersonLayout,
+    DataLayout,
+    NoticeCell,
+  },
   data() {
-    return {};
+    return {
+      textHeader: "Ravn Star Wars Registry",
+    };
+  },
+  computed: {
+    page() {
+      return this.$store.state.hasNextPage;
+    },
+    id() {
+      return this.$store.state.selectedId;
+    },
+  },
+  setup() {
+    const store = useStore();
+    let result = getFivePeople();
+    watch(() => {
+      if (result.loading.value) return;
+
+      store.dispatch("addPeople", result);
+
+      if (!!store.state.lastCursor) {
+        result = getFivePeople(store.state.lastCursor);
+
+        if (!result.loading.value) {
+          store.dispatch("addPeople", result);
+        }
+      }
+    });
+
   },
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
+.container {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100vw;
+  padding-top: 52px;
 
-  .container{
-    display: flex;
-    flex-flow: row nowrap;
-    width: 100vw
-  }
+}
 
-  .container__main{
+.container__main {
+  width: 100%;
+  // display: none;
+
+  @media (min-width: 720px) {
     width: 30%;
   }
+}
 
-  .container__info{
-    height: 100vh;
-    border-left: 1px solid rgba(0, 0, 0, 0.1); 
+.container__info {
+  position: sticky;
+  top: 52px;
+  height: calc(100vh - (52px + 32px) );
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0 16px;
+  @media (min-width: 720px) {
+    width: 70%;
+    padding: 0 3rem;
   }
-
+}
 </style>

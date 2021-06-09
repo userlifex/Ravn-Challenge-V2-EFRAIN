@@ -1,0 +1,20 @@
+query getFivePeople($cursor: String) {
+  allPeople(first: 5, after: $cursor) {
+    edges {
+      cursor
+      node {
+        id
+      	name
+      	species {
+        	name
+      	}
+      	homeworld {
+        	name
+      	}
+      }
+    }
+    pageInfo {
+      hasNextPage     
+    }
+  }
+}

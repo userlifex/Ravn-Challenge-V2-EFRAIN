@@ -1,0 +1,15 @@
+query getInfoPersons {
+  allPeople(first: 5) {
+    totalCount
+    people {
+      name
+      species {
+        name
+      }
+
+      homeworld {
+        name
+      }
+    }
+  }
+}

@@ -2,7 +2,6 @@
   <div class="loading-cell">
     <LoadingIndicator></LoadingIndicator>
   </div>
-  <h2>xd</h2>
 </template>
 
 <script>

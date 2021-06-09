@@ -3,7 +3,7 @@
     <div class="person-cell__info">
       <p class="person-cell__name"> {{ name }}</p>
       <p class="person-cell__description low-emphasis">
-        {{ description }}</p
+        {{ specieName }} from {{ homeworldName }}</p
       >
     </div>
     <span class="person-cell__indication">
@@ -20,9 +20,21 @@ export default {
       default: "Luke Skywalker",
       type: String,
     },
-    description: {
-      default: "Human from Tatooine",
-      type: String,
+    specie: {
+      default: "Human",
+      type: Object,
+    },
+    homeworld: {
+      default: "Tatooine",
+      type: Object,
+    },
+  },
+  computed: {
+    specieName() {
+      return !!this.specie ? this.specie.name : "Human";
+    },
+    homeworldName() {
+      return this.homeworld.name;
     },
   },
 };
@@ -36,6 +48,7 @@ export default {
   padding-left: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   margin-left: 16px;
+  cursor: pointer;
 }
 
 .person-cell__name {
