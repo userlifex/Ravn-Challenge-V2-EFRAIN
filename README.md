@@ -10,8 +10,19 @@ npm install
 npm run serve
 ```
 
-### PRODUCTION VERSION IS NOT OPTIMIZED
+    Note: Production option is not optimized 
 
 ## MAIN VIEW
+
+<img src="docs/img/main.png">
+
+## Loading people
+
+
+<img src="docs/img/loading-people.png">
+
+## Loading person
+
+<img src="docs/img/loading-person.png">
 
 
