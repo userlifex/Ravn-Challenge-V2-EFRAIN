@@ -12,7 +12,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
 .loading-cell {
   padding: 16px;
   display: flex;

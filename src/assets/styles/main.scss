@@ -1,6 +1,6 @@
 @import '_variables.scss';
 
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -11,19 +11,19 @@ h2 {
     //default style h2
     font-size: 17px;
     color: $text-dark;
-    padding: 16px ;
+    padding: 16px;
 }
 
-p{
+p {
     //default style p
     font-size: 17px;
-    color: $text-dark; 
+    color: $text-dark;
 }
 
-.low-emphasis{
+.low-emphasis {
     color: $text-light;
 }
 
-.high-emphasis{
+.high-emphasis {
     color: $text-emphasis;
 }

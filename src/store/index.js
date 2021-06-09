@@ -1,5 +1,4 @@
 import { createStore } from "vuex";
-import { getDataPerson } from "../use/getDataPerson"
 export default createStore({
     state: {
         people: [],
@@ -7,15 +6,12 @@ export default createStore({
         hasNextPage: true,
         selectedId: "",
         selectedPerson: null,
-        loading: false
+        loadingPerson: false,
+        errorLoadingPeople: null,
+        errorLoadingPerson: null
     },
     mutations: {
-        SET_LOADING(state, value) {
-            state.loading = value;
-        },
-        SET_ERROR(state, value) {
-            state.error = value
-        },
+
         ADD_PEOPLE(state, people) {
             state.people.push(...people)
         },
@@ -25,16 +21,28 @@ export default createStore({
         SET_HAS_NEXT_PAGE(state, value) {
             state.hasNextPage = value
         },
-        SET_SELECTED_ID(state, value){
+        SET_SELECTED_ID(state, value) {
             state.selectedId = value
         },
-        SET_SELECTED_PERSON(state, value){
+        SET_SELECTED_PERSON(state, value) {
             state.selectedPerson = value
+        },
+        SET_ERROR_LOADING_PEOPLE(state, value) {
+            state.errorLoadingPeople = value;
+        },
+        SET_ERROR_LOADING_PERSON(state, value) {
+            state.errorLoadingPerson = value;
+        },
+        DROP_ALL_PEOPLE(state) {
+            state.people = []
+        },
+        SET_LOADING_PERSON(state, value) {
+            state.loadingPerson = value;
         }
-
     },
     actions: {
         addPeople({ commit }, result) {
+            // check if the result has next page to continue making querys
             if (result.hasNextPage.value) {
 
                 commit("ADD_PEOPLE", result.dataPeople.value)
@@ -45,25 +53,40 @@ export default createStore({
 
                 commit("SET_LAST_CURSOR", lastCursor)
             } else {
+
                 commit("SET_HAS_NEXT_PAGE", false)
             }
         },
         setHasNextPage({ commit }, value) {
             commit("SET_HAS_NEXT_PAGE", value)
         },
-        selectId({commit}, id){
+        selectId({ commit }, id) {
             commit("SET_SELECTED_ID", id)
         },
-        setPerson({commit}, result){
-            commit("SET_SELECTED_PERSON", result.person)
+        setPerson({ commit }, result) {
+            // edit the person data if there is no errors
+            const error = result.error.value
+            if (error !== null) {
+                commit("SET_ERROR_LOADING_PERSON", result.error.value)
+            } else {
+                commit("SET_SELECTED_PERSON", result.person)
+            }
+            commit("SET_LOADING_PERSON", false)
+        },
+        setErrorLoadingPeople({ commit }, value) {
+            commit("SET_ERROR_LOADING_PEOPLE", value)
+        },
+        dropAllPeople({ commit }) {
+            commit("DROP_ALL_PEOPLE")
+            commit("SET_SELECTED_PERSON", null)
+            commit("SET_SELECTED_ID", "")
+            commit("SET_LAST_CURSOR", "")
+        },
+        setLoadingPerson({ commit }, value) {
+            commit("SET_LOADING_PERSON", value)
+        },
+        resetPerson({ commit }) {
+            commit("SET_SELECTED_PERSON", null)
         }
     },
-    getters: {
-        getAllPeople(state) {
-            return state.people;
-        },
-        id(state){
-            return state.selectedId;
-        }
-    }
 })

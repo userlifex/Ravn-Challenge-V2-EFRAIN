@@ -1,6 +1,5 @@
 <template>
   <header class="header">
-    <span class="header__arrow"></span>
     <h2 class="header__title">{{ text }}</h2>
   </header>
 </template>
@@ -11,13 +10,14 @@ export default {
   props: {
     text: String,
   },
+  
 };
 </script>
 
 <style scoped lang="scss">
 .header {
   background-color: $ravn-black;
-  text-align: center;
+  text-align: left;
   position: fixed;
   width: 100%;
 }
@@ -26,21 +26,5 @@ export default {
   color: white;
 }
 
-.header__arrow {
-  background-image: url("../../assets/icons/left-arrow.png");
-  background-repeat: no-repeat;
-  width: 16px;
-  height: 16px;
-  position: absolute;
-  display: block;
-  left: 16px;
-  top: 50%;
-  transform: translateY(-50%)
 
-}
-@media (min-width: 1024px) {
-  .header {
-    text-align: left;
-  }
-}
 </style>

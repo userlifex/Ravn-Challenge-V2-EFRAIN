@@ -10,7 +10,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
     .notice-cell{
         margin: 16px;
     }

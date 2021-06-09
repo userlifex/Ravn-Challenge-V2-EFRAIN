@@ -1,5 +1,0 @@
-query getInfoPeople {
-  allPeople {
-    totalCount
-  }
-}

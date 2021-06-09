@@ -2,6 +2,7 @@
   <div v-if="people.length !== 0" class="person-layout">
     <PersonCell
       v-for="person in people"
+      :isSelected="person.node.id === selectedId"
       :key="person.node.id"
       :name="person.node.name"
       :specie="person.node.species"
@@ -12,42 +13,29 @@
 </template>
 
 <script>
-import { useStore } from "vuex";
-import { getDataPerson } from "../../use/getDataPerson";
-import PersonCell from "../common/PersonCell";
+//third party
+import { mapState } from "vuex";
+
+// components
+import PersonCell from "@/components/common/PersonCell";
+
 export default {
   name: "PersonLayout",
   components: {
     PersonCell,
   },
   computed: {
-    people() {
-      return this.$store.state.people;
-    },
+    ...mapState({
+      people: "people",
+      selectedId: "selectedId",
+    }),
   },
   methods: {
     selectPerson: function(id) {
       this.$store.dispatch("selectId", id);
     },
   },
-  // setup() {
-  //   // const store = useStore();
-  //   const selectPerson = (id) => {
-
-  //     const result = getDataPerson(id);
-
-  //     // if (!result.loading.value) {
-  //     //   console.log(result)
-  //     // }
-
-  //     console.log(result)
-  //   };
-
-  //   return {
-  //     selectPerson,
-  //   };
-  // },
 };
 </script>
 
-<style></style>
+<style scoped lang="scss"></style>
