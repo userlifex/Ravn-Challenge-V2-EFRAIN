@@ -1,19 +1,17 @@
-# swapi-challenge
+# Ravn Challenge - Efrain's Project
 
 ## Project setup
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Compiles and hot-reloads for development and test
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### PRODUCTION VERSION IS NOT OPTIMIZED
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## MAIN VIEW
+
+
